@@ -1,10 +1,9 @@
-##############################################################
+
 #Use this prior to running python Script
 #import nltk
 #nltk.download("stopwords")
 #nltk.download('punkt')
 #nltk.download('wordnet')
-#######################################################
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
