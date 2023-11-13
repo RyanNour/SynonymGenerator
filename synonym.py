@@ -8,7 +8,8 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet as wn
-
+import random
+import re
 
 example_sent = input("Enter Text: \n")
 
@@ -78,10 +79,51 @@ elif user_choice == "2":
         
     print(getSynonymForSingleWord(filtered_sentence)) 
 
+elif user_choice == "3":
+    specific_word = input("Enter the word for which you want synonyms: \n")
+    synonyms = set()
+    for synset in wn.synsets(specific_word):
+        for lemma in synset.lemma_names():
+            synonyms.add(lemma.replace('_', ' '))  # Replace underscores with spaces for compound words
+
+    if synonyms:
+        print(f"Synonyms for {specific_word}:")
+        for idx, synonym in enumerate(synonyms):
+            print(f"{idx + 1}: {synonym}")
+        synonym_choice = int(input(f"Choose the synonym by entering the corresponding number (1-{len(synonyms)}): \n"))
+        chosen_synonym = list(synonyms)[synonym_choice - 1]
+
+        # Replace all occurrences of the specific word with the chosen synonym in the text
+        replaced_text = example_sent.replace(specific_word, chosen_synonym)
+        print("\nUpdated Text:")
+        print(replaced_text)
+    else:
+        print(f"No synonyms found for {specific_word}")
+
+
+
+elif user_choice == "4":
+    specific_word = input("Enter the word for which you want random synonyms: \n")
+    synonyms = set()
+    for synset in wn.synsets(specific_word):
+        for lemma in synset.lemma_names():
+            synonyms.add(lemma.replace('_', ' '))  # Replace underscores with spaces for compound words
+
+    # Check if there are synonyms available
+    if synonyms:
+        # Replace all occurrences of the specific word with a random synonym in the text
+        def replace_with_synonym(match):
+            return random.choice(list(synonyms))
+
+        replaced_text = re.sub(r'\b' + re.escape(specific_word) + r'\b', replace_with_synonym, example_sent, flags=re.IGNORECASE)
+        
+        print("\nUpdated Text with Random Synonyms:")
+        print(replaced_text)
+    else:
+        print(f"No synonyms found for {specific_word}")
+
 else:
-    print("You didnt enter 1 or 2\n")
-
-
+    print("You didn't enter a valid choice (1, 2, or 3).\n")
 
 
 
