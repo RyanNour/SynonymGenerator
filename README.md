@@ -3,7 +3,7 @@
 For students writing essays or anyone strengthening vocabulary
 Fast Synonym Generator For long amounts of Text
 
-**PIP Install Natural Language Toolkit library**
+**Install Natural Language Toolkit library**
 
 pip install nltk
 
