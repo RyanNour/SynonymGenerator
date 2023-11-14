@@ -10,8 +10,14 @@ pip install nltk
 **Requirments Prior to Running Source Code**
 
 import nltk
+
 nltk.download("stopwords")
+
+
 nltk.download('punkt')
+
+
+
 nltk.download('wordnet')
 
 
