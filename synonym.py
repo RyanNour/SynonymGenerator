@@ -32,7 +32,7 @@ print("\n")
 print("Filtered sentence:")
 print(filtered_sentence)
 
-user_choice = input("Input 1: for synonyms of only 1 occurence of word in paragraph or Enter 2: for synonyms of more than 1 occurence of word in paragraph \n")
+user_choice = input("Input 1: for synonyms of only 1 occurence of word in paragraph or Input 2: for synonyms of more than 1 occurence of word in paragraph Input 3 for Specific Word  Input 4 for randomoly generated for a specific word \n")
 
 
 if user_choice == "1":
