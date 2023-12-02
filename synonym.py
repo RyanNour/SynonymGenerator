@@ -11,13 +11,17 @@ from nltk.corpus import wordnet as wn
 import random
 import re
 
+
+# Input text from the user
 example_sent = input("Enter Text: \n")
 
-
+# Set up English stop words
 stop_words = set(stopwords.words('english'))
-  
+
+# Tokenize the input text 
 word_tokens = word_tokenize(example_sent)
-  
+
+# Filter out stop words from the tokenized words
 filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]
   
 filtered_sentence = []
@@ -32,12 +36,14 @@ print("\n")
 print("Filtered sentence:")
 print(filtered_sentence)
 
-user_choice = input("Input 1: for synonyms of only 1 occurence of word in paragraph or Input 2: for synonyms of more than 1 occurence of word in paragraph Input 3 for Specific Word  Input 4 for randomoly generated for a specific word \n")
+# User choice for different synonym functionalities
 
+user_choice = input("Input 1: for synonyms of only 1 occurence of word in paragraph \nInput 2: for synonyms of more than 1 occurence of word in paragraph \nInput 3 for Specific Word  \nInput 4 for randomoly generated for a specific word \nInput 5 for multiple specific words \n Your Choice: ")
 
+# Option 1: Find synonyms for words that appear only once
 if user_choice == "1":
 
-#words only used once in paragraph  
+ 
     def getSynonymForSingleWord(filtered_sentence):
         new_list = [] 
         counts = {}
@@ -58,6 +64,7 @@ if user_choice == "1":
         
     print(getSynonymForSingleWord(filtered_sentence)) 
 
+# Option 2: Find synonyms for words that appear more than once
 elif user_choice == "2":
     def getSynonymForSingleWord(filtered_sentence):
         new_list = [] 
@@ -78,6 +85,8 @@ elif user_choice == "2":
 
         
     print(getSynonymForSingleWord(filtered_sentence)) 
+
+# Option 3: Find synonyms for a specific word entered by the user
 
 elif user_choice == "3":
     specific_word = input("Enter the word for which you want synonyms: \n")
@@ -101,7 +110,7 @@ elif user_choice == "3":
         print(f"No synonyms found for {specific_word}")
 
 
-
+# Option 4: Randomly replace a specific word with its synonyms
 elif user_choice == "4":
     specific_word = input("Enter the word for which you want random synonyms: \n")
     synonyms = set()
@@ -122,8 +131,45 @@ elif user_choice == "4":
     else:
         print(f"No synonyms found for {specific_word}")
 
+# Option 5: Replace multiple specific words with their chosen synonyms
+elif user_choice == "5":
+    words_and_synonyms = {}
+
+    while True:
+             # User inputs words and types 'finish' to end
+        specific_word = input("Enter a word for which you want synonyms, or type 'finish' to end: \n")
+        if specific_word.lower() == 'finish':
+            break
+
+        synonyms = set()
+        for synset in wn.synsets(specific_word):
+            for lemma in synset.lemma_names():
+                synonyms.add(lemma.replace('_', ' '))  # Replace underscores with spaces for compound words
+
+        if synonyms:
+            print(f"Synonyms for {specific_word}:")
+            for idx, synonym in enumerate(synonyms):
+                print(f"{idx + 1}: {synonym}")
+            synonym_choice = int(input(f"Choose the synonym by entering the corresponding number (1-{len(synonyms)}): \n"))
+            chosen_synonym = list(synonyms)[synonym_choice - 1]
+
+            # Store the chosen synonym for each word
+            words_and_synonyms[specific_word] = chosen_synonym
+        else:
+            print(f"No synonyms found for {specific_word}")
+
+    # Replace all occurrences of the specified words with the chosen synonyms in the text
+    replaced_text = example_sent
+    for word, synonym in words_and_synonyms.items():
+        replaced_text = replaced_text.replace(word, synonym)
+
+    print("\nUpdated Text:")
+    print(replaced_text)
+
+   
+
 else:
-    print("You didn't enter a valid choice (1, 2, or 3).\n")
+    print("You didn't enter a valid choice (1, 2, 3, 4, or 5).\n")
 
 
 
