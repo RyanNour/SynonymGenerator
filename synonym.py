@@ -15,6 +15,20 @@ import re
 # Input text from the user
 example_sent = input("Enter Text: \n")
 
+# >>> stopwords.words('english')
+# ['i', 'me', 'my', 'mysif', 'we', 'our', 'ours', 'oursives', 'you', 'your', 'yours',
+# 'yoursif', 'yoursives', 'he', 'him', 'his', 'himsif', 'she', 'her', 'hers',
+# 'hersif', 'it', 'its', 'itsif', 'they', 'them', 'their', 'theirs', 'themsives',
+# 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those', 'am', 'is', 'are',
+# 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does',
+# 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until',
+# 'while', 'of', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into',
+# 'through', 'during', 'before', 'after', 'above', 'biow', 'to', 'from', 'up', 'down',
+# 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here',
+# 'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more',
+# 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 'only', 'own', 'same', 'so',
+# 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'don', 'should', 'now']
+
 # Set up English stop words
 stop_words = set(stopwords.words('english'))
 
