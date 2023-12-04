@@ -1,5 +1,6 @@
 
 #Use this prior to running python Script
+#"pip install nltk" in terminal
 #import nltk
 #nltk.download("stopwords")
 #nltk.download('punkt')
