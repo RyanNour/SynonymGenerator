@@ -14,7 +14,7 @@ import re
 
 
 # Input text from the user
-example_sent = input("Enter Text: \n")
+example_sent = input("Enter Text: \n").lower()
 
 # >>> stopwords.words('english')
 # ['i', 'me', 'my', 'mysif', 'we', 'our', 'ours', 'oursives', 'you', 'your', 'yours',
@@ -37,13 +37,8 @@ stop_words = set(stopwords.words('english'))
 word_tokens = word_tokenize(example_sent)
 
 # Filter out stop words from the tokenized words
-filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]
+filtered_sentence = [w for w in word_tokens if w not in stop_words]
   
-filtered_sentence = []
-  
-for w in word_tokens:
-    if w not in stop_words:
-        filtered_sentence.append(w)
 
 
 #filtered sentence removing not useful words 
