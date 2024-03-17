@@ -2,7 +2,7 @@
 
 For students writing essays or anyone strengthening vocabulary
 
-Fast Synonym Generator for long amounts of Text
+Rapid Synonym Generator for long amounts of Text
 
 **Install Natural Language Toolkit library**
 
